@@ -20,6 +20,7 @@ interface BookingSystemProps {
 }
 
 export interface BookingData {
+  id: string;
   name: string;
   phone: string;
   carBrand: string;
@@ -28,6 +29,8 @@ export interface BookingData {
   serviceId: string;
   date: string;
   time: string;
+  status: string;
+  createdAt: string;
 }
 
 const STEPS = [
@@ -47,13 +50,29 @@ const carBrands = [
 const currentYear = new Date().getFullYear();
 const years = Array.from({ length: 20 }, (_, i) => String(currentYear - i));
 
+const ALL_SLOTS = [
+  '08:00', '09:00', '10:00', '11:00',
+  '13:00', '14:00', '15:00', '16:00', '17:00'
+];
+
+function getBookedSlots(date: string): string[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    const bookings = JSON.parse(localStorage.getItem('delux_bookings') || '[]');
+    return bookings
+      .filter((b: BookingData) => b.date === date)
+      .map((b: BookingData) => b.time);
+  } catch {
+    return [];
+  }
+}
+
 export default function BookingSystem({ isOpen, onClose, initialServiceId, onComplete }: BookingSystemProps) {
   const [step, setStep] = useState(0);
   const [selectedService, setSelectedService] = useState(initialServiceId || '');
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [selectedTime, setSelectedTime] = useState('');
-  const [availableSlots, setAvailableSlots] = useState<string[]>([]);
-  const [loadingSlots, setLoadingSlots] = useState(false);
+  const [availableSlots, setAvailableSlots] = useState<string[]>(ALL_SLOTS);
   const [carBrand, setCarBrand] = useState('');
   const [carModel, setCarModel] = useState('');
   const [carYear, setCarYear] = useState('');
@@ -69,21 +88,14 @@ export default function BookingSystem({ isOpen, onClose, initialServiceId, onCom
     }
   }, [initialServiceId]);
 
-  // Fetch available slots when date changes
+  // Fetch available slots when date changes (from localStorage)
   useEffect(() => {
     if (selectedDate) {
-      setLoadingSlots(true);
       const dateStr = format(selectedDate, 'yyyy-MM-dd');
-      fetch(`/api/available-slots?date=${dateStr}`)
-        .then(res => res.json())
-        .then(data => {
-          setAvailableSlots(data.availableSlots || []);
-          setSelectedTime('');
-        })
-        .catch(() => {
-          setAvailableSlots([]);
-        })
-        .finally(() => setLoadingSlots(false));
+      const bookedSlots = getBookedSlots(dateStr);
+      const available = ALL_SLOTS.filter(slot => !bookedSlots.includes(slot));
+      setAvailableSlots(available);
+      setSelectedTime('');
     }
   }, [selectedDate]);
 
@@ -99,10 +111,11 @@ export default function BookingSystem({ isOpen, onClose, initialServiceId, onCom
 
   const handleSubmit = async () => {
     if (!canGoNext()) return;
-    
+
     setSubmitting(true);
     try {
       const bookingData: BookingData = {
+        id: crypto.randomUUID(),
         name,
         phone,
         carBrand,
@@ -111,21 +124,20 @@ export default function BookingSystem({ isOpen, onClose, initialServiceId, onCom
         serviceId: selectedService,
         date: format(selectedDate!, 'yyyy-MM-dd'),
         time: selectedTime,
+        status: 'confirmed',
+        createdAt: new Date().toISOString(),
       };
 
-      const response = await fetch('/api/bookings', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(bookingData),
-      });
+      // Save to localStorage
+      const existing = JSON.parse(localStorage.getItem('delux_bookings') || '[]');
+      existing.push(bookingData);
+      localStorage.setItem('delux_bookings', JSON.stringify(existing));
 
-      if (!response.ok) {
-        throw new Error('Error al crear la reserva');
-      }
+      // Small delay for UX feel
+      await new Promise(r => setTimeout(r, 800));
 
-      const result = await response.json();
       onComplete(bookingData);
-    } catch (error) {
+    } catch {
       toast.error('Error al procesar la reserva. Intenta de nuevo.');
     } finally {
       setSubmitting(false);
@@ -146,7 +158,6 @@ export default function BookingSystem({ isOpen, onClose, initialServiceId, onCom
 
   const handleServiceSelect = (id: string) => {
     setSelectedService(id);
-    // Auto-advance after a brief delay
     setTimeout(() => setStep(1), 300);
   };
 
@@ -166,6 +177,7 @@ export default function BookingSystem({ isOpen, onClose, initialServiceId, onCom
             <button
               onClick={onClose}
               className="w-10 h-10 flex items-center justify-center bg-[#1A1A1A] border border-[#2A2A2A] hover:border-[#C9A227] transition-colors"
+              aria-label="Cerrar reservación"
             >
               <X size={20} className="text-white" />
             </button>
@@ -178,9 +190,7 @@ export default function BookingSystem({ isOpen, onClose, initialServiceId, onCom
                 <div key={s.id} className="flex-1 flex items-center gap-2">
                   <div
                     className={`flex items-center gap-2 flex-1 px-3 py-2 text-xs tracking-wider uppercase transition-colors ${
-                      i <= step
-                        ? 'text-[#C9A227]'
-                        : 'text-[#555]'
+                      i <= step ? 'text-[#C9A227]' : 'text-[#555]'
                     }`}
                   >
                     <div
@@ -214,7 +224,7 @@ export default function BookingSystem({ isOpen, onClose, initialServiceId, onCom
                 Elige tu servicio
               </h2>
               <p className="text-[#888] mb-8">Selecciona el tratamiento que tu vehículo necesita.</p>
-              
+
               <div className="space-y-3">
                 {services.map((service) => (
                   <button
@@ -230,6 +240,7 @@ export default function BookingSystem({ isOpen, onClose, initialServiceId, onCom
                       src={service.image}
                       alt={service.name}
                       className="w-16 h-16 sm:w-20 sm:h-20 object-cover shrink-0"
+                      loading="lazy"
                     />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between gap-2">
@@ -285,11 +296,7 @@ export default function BookingSystem({ isOpen, onClose, initialServiceId, onCom
                 <div>
                   <Label className="text-white text-sm mb-3 block">Hora disponible</Label>
                   {selectedDate ? (
-                    loadingSlots ? (
-                      <div className="flex items-center justify-center py-12">
-                        <Loader2 className="text-[#C9A227] animate-spin" size={24} />
-                      </div>
-                    ) : availableSlots.length > 0 ? (
+                    availableSlots.length > 0 ? (
                       <div className="grid grid-cols-2 gap-2">
                         {availableSlots.map((slot) => (
                           <button

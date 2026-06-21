@@ -6,19 +6,41 @@ import { Toaster } from "@/components/ui/sonner";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "DeluxDetail — Premium Car Detailing",
-  description: "Devuélvele a tu vehículo el acabado que merece. Servicios de detailing profesional con resultados de concesionario.",
-  keywords: ["car detailing", "premium detailing", "ceramic coating", "paint correction", "car care"],
+  title: "DeluxDetail — Premium Car Detailing | Acabado de Concesionario",
+  description: "Devuélvele a tu vehículo el acabado que merece. Servicios de detailing profesional: Ceramic Coating, Paint Correction, Interior Deep Cleaning y más. Reserva online.",
+  keywords: ["car detailing", "premium detailing", "ceramic coating", "paint correction", "car care", "DeluxDetail"],
   icons: {
     icon: "/logo.svg",
+  },
+  openGraph: {
+    title: "DeluxDetail — Premium Car Detailing",
+    description: "Devuélvele a tu vehículo el acabado que merece. Servicios de detailing profesional con resultados de concesionario.",
+    url: "https://delux-detail.pages.dev",
+    siteName: "DeluxDetail",
+    type: "website",
+    images: [
+      {
+        url: "/images/hero-car.jpg",
+        width: 1200,
+        height: 630,
+        alt: "DeluxDetail Premium Car Detailing",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DeluxDetail — Premium Car Detailing",
+    description: "Devuélvele a tu vehículo el acabado que merece. Reserva online ahora.",
   },
 };
 

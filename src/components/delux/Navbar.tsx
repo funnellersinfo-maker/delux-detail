@@ -30,6 +30,7 @@ export default function Navbar({ onBookNow }: NavbarProps) {
 
   return (
     <nav
+      aria-label="Navegación principal"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? 'bg-[#0B0B0B]/95 backdrop-blur-md border-b border-[#2A2A2A]'
@@ -52,24 +53,28 @@ export default function Navbar({ onBookNow }: NavbarProps) {
           <div className="hidden md:flex items-center gap-8">
             <button
               onClick={() => scrollTo('servicios')}
+              aria-label="Ir a sección de servicios"
               className="text-sm text-[#888] hover:text-[#C9A227] transition-colors tracking-wide uppercase"
             >
               Servicios
             </button>
             <button
               onClick={() => scrollTo('galeria')}
+              aria-label="Ir a galería de resultados"
               className="text-sm text-[#888] hover:text-[#C9A227] transition-colors tracking-wide uppercase"
             >
               Galería
             </button>
             <button
               onClick={() => scrollTo('testimonios')}
+              aria-label="Ir a testimonios"
               className="text-sm text-[#888] hover:text-[#C9A227] transition-colors tracking-wide uppercase"
             >
               Testimonios
             </button>
             <Button
               onClick={onBookNow}
+              aria-label="Reservar cita"
               className="bg-[#C9A227] hover:bg-[#D4B13A] text-[#0B0B0B] font-semibold tracking-wide px-6 rounded-none transition-all"
             >
               RESERVAR CITA
@@ -79,6 +84,7 @@ export default function Navbar({ onBookNow }: NavbarProps) {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
             className="md:hidden text-white p-2"
           >
             {menuOpen ? <X size={24} /> : <Menu size={24} />}

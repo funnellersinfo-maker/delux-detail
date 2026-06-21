@@ -1,24 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { X, Calendar, Clock, Car, User, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { services } from '@/lib/services';
-
-interface AdminBooking {
-  id: string;
-  name: string;
-  phone: string;
-  carBrand: string;
-  carModel: string;
-  carYear: string;
-  serviceId: string;
-  date: string;
-  time: string;
-  status: string;
-  createdAt: string;
-}
+import type { BookingData } from './BookingSystem';
 
 interface AdminPanelProps {
   isOpen: boolean;
@@ -33,41 +20,37 @@ const statusConfig: Record<string, { label: string; color: string; bg: string }>
 };
 
 export default function AdminPanel({ isOpen, onClose }: AdminPanelProps) {
-  const [bookings, setBookings] = useState<AdminBooking[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [selectedStatus, setSelectedStatus] = useState<string>('all');
-
-  const fetchBookings = async () => {
-    setLoading(true);
+  const [bookings, setBookings] = useState<BookingData[]>(() => {
+    if (typeof window === 'undefined') return [];
     try {
-      const res = await fetch('/api/bookings');
-      const data = await res.json();
+      return JSON.parse(localStorage.getItem('delux_bookings') || '[]');
+    } catch {
+      return [];
+    }
+  });
+  const [selectedStatus, setSelectedStatus] = useState<string>('all');
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  const refreshBookings = () => {
+    try {
+      const data = JSON.parse(localStorage.getItem('delux_bookings') || '[]');
       setBookings(data);
-    } catch (error) {
-      console.error('Error fetching bookings:', error);
-    } finally {
-      setLoading(false);
+      setRefreshKey(k => k + 1);
+    } catch {
+      setBookings([]);
     }
   };
 
-  useEffect(() => {
-    if (isOpen) {
-      fetchBookings();
-    }
-  }, [isOpen]);
-
-  const updateStatus = async (id: string, status: string) => {
+  const updateStatus = (id: string, status: string) => {
     try {
-      await fetch(`/api/bookings/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status }),
-      });
-      setBookings(prev =>
-        prev.map(b => (b.id === id ? { ...b, status } : b))
+      const existing = JSON.parse(localStorage.getItem('delux_bookings') || '[]');
+      const updated = existing.map((b: BookingData) =>
+        b.id === id ? { ...b, status } : b
       );
-    } catch (error) {
-      console.error('Error updating booking:', error);
+      localStorage.setItem('delux_bookings', JSON.stringify(updated));
+      setBookings(updated);
+    } catch {
+      // ignore
     }
   };
 
@@ -84,7 +67,7 @@ export default function AdminPanel({ isOpen, onClose }: AdminPanelProps) {
   };
 
   // Group by date
-  const groupedBookings = filteredBookings.reduce<Record<string, AdminBooking[]>>((acc, booking) => {
+  const groupedBookings = filteredBookings.reduce<Record<string, BookingData[]>>((acc, booking) => {
     if (!acc[booking.date]) acc[booking.date] = [];
     acc[booking.date].push(booking);
     return acc;
@@ -104,18 +87,19 @@ export default function AdminPanel({ isOpen, onClose }: AdminPanelProps) {
             </div>
             <div className="flex items-center gap-3">
               <Button
-                onClick={fetchBookings}
+                onClick={refreshBookings}
                 variant="outline"
                 size="sm"
                 className="border-[#2A2A2A] hover:border-[#C9A227] text-[#888] hover:text-[#C9A227] rounded-none bg-transparent gap-2"
-                disabled={loading}
+                aria-label="Actualizar reservas"
               >
-                <RefreshCw size={14} className={loading ? 'animate-spin' : ''} />
+                <RefreshCw size={14} className={refreshKey > 0 ? 'animate-spin' : ''} />
                 Actualizar
               </Button>
               <button
                 onClick={onClose}
                 className="w-10 h-10 flex items-center justify-center bg-[#1A1A1A] border border-[#2A2A2A] hover:border-[#C9A227] transition-colors"
+                aria-label="Cerrar panel"
               >
                 <X size={20} className="text-white" />
               </button>
@@ -168,11 +152,7 @@ export default function AdminPanel({ isOpen, onClose }: AdminPanelProps) {
           </div>
 
           {/* Bookings by Date */}
-          {loading ? (
-            <div className="flex items-center justify-center py-20">
-              <RefreshCw size={24} className="text-[#C9A227] animate-spin" />
-            </div>
-          ) : filteredBookings.length === 0 ? (
+          {filteredBookings.length === 0 ? (
             <div className="text-center py-20 text-[#888]">
               <Calendar size={48} className="mx-auto mb-4 text-[#2A2A2A]" />
               <p>No hay reservas para mostrar</p>

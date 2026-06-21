@@ -24,7 +24,7 @@ export default function BookingConfirmation({ booking, onClose }: BookingConfirm
     `Nombre: ${booking.name}`
   );
 
-  const whatsappUrl = `https://wa.me/?text=${whatsappMessage}`;
+  const whatsappUrl = `https://wa.me/15551234567?text=${whatsappMessage}`;
 
   return (
     <div className="fixed inset-0 z-50 bg-[#0B0B0B]/98 backdrop-blur-md overflow-y-auto flex items-center justify-center p-4">
@@ -88,7 +88,8 @@ export default function BookingConfirmation({ booking, onClose }: BookingConfirm
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-3 w-full bg-[#25D366] hover:bg-[#20BD5A] text-white font-semibold tracking-wider py-4 px-8 transition-all text-base"
+            className="flex items-center justify-center gap-3 w-full bg-[#25D366] hover:bg-[#20BD5A] text-white font-semibold tracking-wider py-4 px-8 transition-all text-base rounded-none"
+            aria-label="Continuar conversación por WhatsApp"
           >
             <MessageCircle size={20} />
             Continuar por WhatsApp

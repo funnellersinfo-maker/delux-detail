@@ -1,6 +1,7 @@
 'use client';
 
 import BeforeAfterSlider from './BeforeAfterSlider';
+import { motion } from 'framer-motion';
 
 const galleryItems = [
   {
@@ -26,9 +27,18 @@ const galleryItems = [
   },
 ];
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: i * 0.15 },
+  }),
+};
+
 export default function GallerySection() {
   return (
-    <section id="galeria" className="py-20 sm:py-28 bg-[#0B0B0B]">
+    <section id="galeria" className="py-20 sm:py-28 bg-[#0B0B0B]" aria-label="Galería de resultados antes y después">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -46,8 +56,16 @@ export default function GallerySection() {
 
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {galleryItems.map((item) => (
-            <div key={item.id} className="group">
+          {galleryItems.map((item, i) => (
+            <motion.div
+              key={item.id}
+              custom={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-50px' }}
+              variants={cardVariants}
+              className="group"
+            >
               <div className="border border-[#2A2A2A] overflow-hidden group-hover:border-[#C9A227]/30 transition-colors">
                 <BeforeAfterSlider
                   beforeSrc={item.before}
@@ -58,7 +76,7 @@ export default function GallerySection() {
                 <h3 className="text-white font-semibold">{item.title}</h3>
                 <p className="text-[#888] text-sm">{item.vehicle}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

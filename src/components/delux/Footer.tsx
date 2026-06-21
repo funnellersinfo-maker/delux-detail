@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { MessageCircle, Phone, MapPin, Instagram } from 'lucide-react';
+import { MessageCircle, Phone, MapPin, Instagram, Clock } from 'lucide-react';
 
 interface FooterProps {
   onBookNow: () => void;
@@ -22,6 +22,7 @@ export default function Footer({ onBookNow, onOpenAdmin }: FooterProps) {
           </p>
           <Button
             onClick={onBookNow}
+            aria-label="Reservar cita ahora"
             className="bg-[#C9A227] hover:bg-[#D4B13A] text-[#0B0B0B] font-semibold tracking-wider px-10 py-6 rounded-none text-base transition-all glow-gold"
           >
             RESERVAR CITA
@@ -50,7 +51,7 @@ export default function Footer({ onBookNow, onOpenAdmin }: FooterProps) {
             <h4 className="text-xs tracking-[0.2em] text-[#C9A227] uppercase font-medium mb-4">
               Servicios
             </h4>
-            <ul className="space-y-2 text-sm text-[#888]">
+            <ul className="space-y-2 text-sm text-[#888]" role="list">
               <li>Rapid Detail</li>
               <li>Premium Detail</li>
               <li>Interior Deep Cleaning</li>
@@ -64,18 +65,29 @@ export default function Footer({ onBookNow, onOpenAdmin }: FooterProps) {
             <h4 className="text-xs tracking-[0.2em] text-[#C9A227] uppercase font-medium mb-4">
               Contacto
             </h4>
-            <ul className="space-y-3 text-sm text-[#888]">
+            <ul className="space-y-3 text-sm text-[#888]" role="list">
               <li className="flex items-center gap-2">
-                <Phone size={14} className="text-[#C9A227]" />
-                +1 (555) 123-4567
+                <Phone size={14} className="text-[#C9A227]" aria-hidden="true" />
+                <a href="tel:+15551234567" className="hover:text-[#C9A227] transition-colors">+1 (555) 123-4567</a>
               </li>
               <li className="flex items-center gap-2">
-                <MessageCircle size={14} className="text-[#C9A227]" />
-                WhatsApp
+                <MessageCircle size={14} className="text-[#C9A227]" aria-hidden="true" />
+                <a
+                  href="https://wa.me/15551234567?text=Hola%20DeluxDetail%2C%20me%20interesa%20sus%20servicios%20de%20detailing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#C9A227] transition-colors"
+                >
+                  WhatsApp
+                </a>
               </li>
               <li className="flex items-center gap-2">
-                <MapPin size={14} className="text-[#C9A227]" />
-                Ciudad de México
+                <MapPin size={14} className="text-[#C9A227]" aria-hidden="true" />
+                <span>Ciudad de México</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <Clock size={14} className="text-[#C9A227]" aria-hidden="true" />
+                <span>Lun-Sáb: 8:00 - 18:00</span>
               </li>
             </ul>
           </div>
@@ -85,12 +97,30 @@ export default function Footer({ onBookNow, onOpenAdmin }: FooterProps) {
             <h4 className="text-xs tracking-[0.2em] text-[#C9A227] uppercase font-medium mb-4">
               Síguenos
             </h4>
-            <ul className="space-y-3 text-sm text-[#888]">
+            <ul className="space-y-3 text-sm text-[#888]" role="list">
               <li className="flex items-center gap-2">
-                <Instagram size={14} className="text-[#C9A227]" />
-                @deluxdetail
+                <Instagram size={14} className="text-[#C9A227]" aria-hidden="true" />
+                <a
+                  href="https://instagram.com/deluxdetail"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#C9A227] transition-colors"
+                >
+                  @deluxdetail
+                </a>
               </li>
             </ul>
+            <div className="mt-4">
+              <span className="text-xs text-[#555]">Email</span>
+              <div className="mt-1">
+                <a
+                  href="mailto:info@deluxdetail.com"
+                  className="text-sm text-[#888] hover:text-[#C9A227] transition-colors break-all"
+                >
+                  info@deluxdetail.com
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -102,6 +132,7 @@ export default function Footer({ onBookNow, onOpenAdmin }: FooterProps) {
           <button
             onClick={onOpenAdmin}
             className="text-[#333] hover:text-[#555] text-xs tracking-wider transition-colors"
+            aria-label="Acceder al panel interno"
           >
             Panel Interno
           </button>

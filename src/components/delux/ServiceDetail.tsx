@@ -24,6 +24,7 @@ export default function ServiceDetail({ serviceId, onClose, onBookNow }: Service
         <button
           onClick={onClose}
           className="fixed top-4 right-4 z-50 w-10 h-10 flex items-center justify-center bg-[#1A1A1A] border border-[#2A2A2A] hover:border-[#C9A227] transition-colors"
+          aria-label="Cerrar detalle del servicio"
         >
           <X size={20} className="text-white" />
         </button>
@@ -32,8 +33,9 @@ export default function ServiceDetail({ serviceId, onClose, onBookNow }: Service
         <div className="relative h-64 sm:h-96 md:h-[500px]">
           <img
             src={service.image}
-            alt={service.name}
+            alt={`Servicio de ${service.name} - Car Detailing Premium`}
             className="w-full h-full object-cover"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-[#0B0B0B]/50 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10">
@@ -150,8 +152,9 @@ export default function ServiceDetail({ serviceId, onClose, onBookNow }: Service
               <div className="relative">
                 <img
                   src="/images/gallery-3-before.jpg"
-                  alt="Antes"
+                  alt="Vehículo antes del detailing"
                   className="w-full h-48 sm:h-64 object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute top-3 left-3 bg-[#0B0B0B]/80 px-3 py-1 text-xs tracking-wider uppercase text-[#888]">
                   Antes
@@ -160,8 +163,9 @@ export default function ServiceDetail({ serviceId, onClose, onBookNow }: Service
               <div className="relative">
                 <img
                   src="/images/gallery-3-after.jpg"
-                  alt="Después"
+                  alt="Vehículo después del detailing"
                   className="w-full h-48 sm:h-64 object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute top-3 left-3 bg-[#0B0B0B]/80 px-3 py-1 text-xs tracking-wider uppercase text-[#C9A227]">
                   Después
@@ -180,6 +184,7 @@ export default function ServiceDetail({ serviceId, onClose, onBookNow }: Service
             </p>
             <Button
               onClick={() => onBookNow(service.id)}
+              aria-label={`Reservar ${service.name} ahora`}
               className="bg-[#C9A227] hover:bg-[#D4B13A] text-[#0B0B0B] font-semibold tracking-wider px-10 py-6 rounded-none text-base transition-all glow-gold"
             >
               RESERVAR AHORA
