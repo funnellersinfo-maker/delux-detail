@@ -39,7 +39,7 @@ export default function HeroSection({ onBookNow, onViewServices }: HeroSectionPr
         >
           <div className="w-1.5 h-1.5 rounded-full bg-[#C9A227] animate-pulse" />
           <span className="text-xs sm:text-sm tracking-[0.2em] text-[#C9A227] uppercase font-medium">
-            Polanco, CDMX
+            Monterrey, NL
           </span>
         </motion.div>
 
@@ -68,7 +68,7 @@ export default function HeroSection({ onBookNow, onViewServices }: HeroSectionPr
           transition={{ duration: 0.8, delay: 0.5 }}
           className="text-base sm:text-lg md:text-xl text-[#888] max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          Detallado profesional en Polanco. Resultados de concesionario con productos importados y garantía escrita.
+          Detallado profesional en Monterrey. Resultados de concesionario con productos importados y garantía escrita.
         </motion.p>
 
         {/* CTAs */}

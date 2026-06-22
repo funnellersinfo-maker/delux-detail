@@ -68,10 +68,10 @@ export default function Footer({ onBookNow, onOpenAdmin }: FooterProps) {
                 <span className="text-xl font-bold tracking-wider text-[#C9A227]">DETAIL</span>
               </div>
               <p className="text-[#888] text-sm leading-relaxed mb-3">
-                Taller de detallado profesional en Polanco, CDMX. Productos importados, equipo certificado y garantía escrita.
+                Taller de detallado profesional en Monterrey, NL. Productos importados, equipo certificado y garantía escrita.
               </p>
               <p className="text-[#555] text-xs">
-                Fundado en 2021 por Alejandro Vega, detailer certificado IGL Coatings.
+                Fundado en 2021 por Alejandro Vega en Monterrey, NL, detailer certificado IGL Coatings.
               </p>
             </div>
           </DopamineReveal>
@@ -101,26 +101,26 @@ export default function Footer({ onBookNow, onOpenAdmin }: FooterProps) {
               <ul className="space-y-3 text-sm text-[#888]" role="list">
                 <li className="flex items-start gap-2">
                   <MapPin size={14} className="text-[#C9A227] mt-0.5 shrink-0" aria-hidden="true" />
-                  <span>Av. Presidente Masaryk 460, Polanco V sección, Miguel Hidalgo, 11560 CDMX</span>
+                  <span>Blvd. Díaz Ordaz 140, Col. Valle Oriente, San Pedro Garza García, NL 66260</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Phone size={14} className="text-[#C9A227]" aria-hidden="true" />
-                  <a href="tel:+525514923180" className="hover:text-[#C9A227] transition-colors">55 1492 3180</a>
+                  <a href="tel:+528121567890" className="hover:text-[#C9A227] transition-colors">81 2156 7890</a>
                 </li>
                 <li className="flex items-center gap-2">
                   <MessageCircle size={14} className="text-[#C9A227]" aria-hidden="true" />
                   <a
-                    href="https://wa.me/525514923180?text=Hola%20DeluxDetail%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita%20para%20detailing"
+                    href="https://wa.me/528121567890?text=Hola%20DeluxDetail%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita%20para%20detailing"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-[#C9A227] transition-colors"
                   >
-                    WhatsApp 55 1492 3180
+                    WhatsApp 81 2156 7890
                   </a>
                 </li>
                 <li className="flex items-center gap-2">
                   <Clock size={14} className="text-[#C9A227]" aria-hidden="true" />
-                  <span>Lun a Vie: 8:00–18:00 / Sáb: 9:00–15:00</span>
+                  <span>Lun a Vie: 8:00–18:00 / Sáb: 9:00–14:00</span>
                 </li>
               </ul>
             </div>

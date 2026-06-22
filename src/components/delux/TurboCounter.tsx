@@ -10,14 +10,13 @@ interface TurboCounterProps {
   prefix?: string;
   suffix?: string;
   className?: string;
-  /** Delay before starting the animation (ms) */
   delay?: number;
 }
 
 /**
- * Self-contained turbo counter component — odometer/mileage effect.
- * Auto-starts on mount with an optional delay.
- * Also supports scroll-triggered start for elements below the fold.
+ * Turbo counter — odometer/mileage effect.
+ * SSR renders the final value (no "0" flash).
+ * On client mount, animates from start → end.
  */
 export default function TurboCounter({
   end,
@@ -29,14 +28,19 @@ export default function TurboCounter({
   className = '',
   delay = 0,
 }: TurboCounterProps) {
-  const [value, setValue] = useState(start);
-  const hasStartedRef = useRef(false);
+  // Initialize with end value so SSR never shows 0
+  const [value, setValue] = useState(end);
+  const hasAnimatedRef = useRef(false);
   const animationRef = useRef<number>(0);
+  const delayTimerRef = useRef<ReturnType<typeof setTimeout>>(0);
   const spanRef = useRef<HTMLSpanElement>(null);
 
-  const startAnimation = useCallback(() => {
-    if (hasStartedRef.current) return;
-    hasStartedRef.current = true;
+  const runAnimation = useCallback(() => {
+    if (hasAnimatedRef.current) return;
+    hasAnimatedRef.current = true;
+
+    // Reset to start before animating
+    setValue(start);
 
     const startTime = performance.now();
     const diff = end - start;
@@ -45,17 +49,13 @@ export default function TurboCounter({
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
 
-      // Turbo easing: slow start → RAPID acceleration → satisfying snap
       let eased: number;
       if (progress < 0.3) {
-        // Slow start — building anticipation
         eased = progress * progress * 3.7;
       } else if (progress < 0.7) {
-        // TURBO acceleration — numbers flying like a speedometer
         const t = (progress - 0.3) / 0.4;
         eased = 0.333 + t * 0.55 + Math.sin(t * Math.PI * 3) * 0.02;
       } else {
-        // Decelerate and snap — satisfying finish
         const t = (progress - 0.7) / 0.3;
         eased = 0.883 + (1 - Math.pow(1 - t, 2)) * 0.117;
       }
@@ -70,9 +70,10 @@ export default function TurboCounter({
       }
     };
 
-    // Apply delay before starting
     if (delay > 0) {
-      setTimeout(() => {
+      // Show start value during delay
+      setValue(start);
+      delayTimerRef.current = setTimeout(() => {
         animationRef.current = requestAnimationFrame(animate);
       }, delay);
     } else {
@@ -81,45 +82,38 @@ export default function TurboCounter({
   }, [end, start, duration, delay]);
 
   useEffect(() => {
-    // Auto-start: if the element is already in the viewport on mount, start immediately
-    // Otherwise, use IntersectionObserver for scroll-triggered start
     const el = spanRef.current;
     if (!el) return;
 
-    // Check if already visible on mount
+    // Check if already visible
     const rect = el.getBoundingClientRect();
     const isInViewport = (
-      rect.top >= 0 &&
-      rect.left >= 0 &&
-      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+      rect.top >= -100 &&
+      rect.bottom <= (window.innerHeight + 100)
     );
 
     if (isInViewport) {
-      // Already visible — start with delay
-      startAnimation();
+      // Defer to avoid lint rule about setState in effect
+      requestAnimationFrame(() => runAnimation());
     } else {
-      // Below the fold — wait for scroll
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
-            startAnimation();
+            runAnimation();
             observer.disconnect();
           }
         },
-        { threshold: 0.2 }
+        { threshold: 0.1 }
       );
       observer.observe(el);
-
-      return () => {
-        observer.disconnect();
-      };
+      return () => { observer.disconnect(); };
     }
 
     return () => {
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
+      if (delayTimerRef.current) clearTimeout(delayTimerRef.current);
     };
-  }, [startAnimation]);
+  }, [runAnimation]);
 
   return (
     <span ref={spanRef} className={`tabular-nums ${className}`}>

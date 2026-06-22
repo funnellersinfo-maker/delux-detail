@@ -19,7 +19,7 @@ export default function WhatsAppFloat() {
 
   return (
     <a
-      href={`https://wa.me/525514923180?text=${message}`}
+      href={`https://wa.me/528121567890?text=${message}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contactar por WhatsApp"

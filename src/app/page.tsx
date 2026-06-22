@@ -8,6 +8,8 @@ import ServiceDetail from '@/components/delux/ServiceDetail';
 import GallerySection from '@/components/delux/GallerySection';
 import TestimonialsSection from '@/components/delux/TestimonialsSection';
 import FAQSection from '@/components/delux/FAQSection';
+import FounderSection from '@/components/delux/FounderSection';
+import AvailabilitySection from '@/components/delux/AvailabilitySection';
 import BookingSystem from '@/components/delux/BookingSystem';
 import BookingConfirmation from '@/components/delux/BookingConfirmation';
 import AdminPanel from '@/components/delux/AdminPanel';
@@ -56,6 +58,8 @@ export default function Home() {
           <ServicesSection onSelectService={handleSelectService} onBookNow={() => handleBookNow()} />
           <GallerySection />
           <TestimonialsSection />
+          <FounderSection />
+          <AvailabilitySection />
           <FAQSection />
           <Footer onBookNow={() => handleBookNow()} onOpenAdmin={() => setView('admin')} />
           <WhatsAppFloat />

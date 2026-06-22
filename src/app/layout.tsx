@@ -16,31 +16,31 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DeluxDetail — Detailing Profesional Polanco CDMX | Ceramic Coating & Paint Correction",
-  description: "Taller de detailing profesional en Polanco, CDMX. Ceramic Coating IGL, Paint Correction, Interior Deep Clean. 487+ vehículos detallados. Garantía escrita 3 años. Reserva por WhatsApp.",
-  keywords: ["car detailing CDMX", "detailing Polanco", "ceramic coating Mexico", "paint correction CDMX", "DeluxDetail", "detailing profesional Mexico", "lavado premium Polanco"],
+  title: "DeluxDetail — Detailing Profesional Monterrey NL | Ceramic Coating & Paint Correction",
+  description: "Taller de detailing profesional en Monterrey, NL. Ceramic Coating IGL, Paint Correction, Interior Deep Clean. 487+ vehículos detallados. Garantía escrita 3 años. Reserva por WhatsApp.",
+  keywords: ["car detailing Monterrey", "detailing NL", "ceramic coating Mexico", "paint correction Monterrey", "DeluxDetail", "detailing profesional Mexico", "lavado premium San Pedro Garza García"],
   icons: {
     icon: "/logo.svg",
   },
   openGraph: {
-    title: "DeluxDetail — Detailing Profesional Polanco CDMX",
-    description: "Taller de detailing profesional en Polanco. Ceramic Coating IGL con garantía de 3 años. 487+ vehículos, 127 reseñas 5 estrellas. Reserva ahora.",
+    title: "DeluxDetail — Detailing Profesional Monterrey NL",
+    description: "Taller de detailing profesional en Monterrey. Ceramic Coating IGL con garantía de 3 años. 487+ vehículos, 127 reseñas 5 estrellas. Reserva ahora.",
     url: "https://delux-detail.pages.dev",
-    siteName: "DeluxDetail Polanco",
+    siteName: "DeluxDetail Monterrey",
     type: "website",
     images: [
       {
         url: "/images/hero-car.jpg",
         width: 1200,
         height: 630,
-        alt: "DeluxDetail — Taller de detailing profesional en Polanco, CDMX",
+        alt: "DeluxDetail — Taller de detailing profesional en Monterrey, NL",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DeluxDetail — Detailing Profesional Polanco CDMX",
-    description: "Taller de detailing profesional en Polanco. Ceramic Coating IGL con garantía de 3 años. Reserva por WhatsApp.",
+    title: "DeluxDetail — Detailing Profesional Monterrey NL",
+    description: "Taller de detailing profesional en Monterrey. Ceramic Coating IGL con garantía de 3 años. Reserva por WhatsApp.",
   },
 };
 

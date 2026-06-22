@@ -25,7 +25,7 @@ export default function BookingConfirmation({ booking, onClose }: BookingConfirm
     `Teléfono: ${booking.phone}`
   );
 
-  const whatsappUrl = `https://wa.me/525514923180?text=${whatsappMessage}`;
+  const whatsappUrl = `https://wa.me/528121567890?text=${whatsappMessage}`;
 
   return (
     <div className="fixed inset-0 z-50 bg-[#0B0B0B]/98 backdrop-blur-md overflow-y-auto flex items-center justify-center p-4">

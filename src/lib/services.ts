@@ -165,7 +165,7 @@ export const testimonials = [
     service: 'Premium Detail',
     rating: 5,
     review: 'Increíble la transformación. Mi GLE parecía otro auto al salir. El nivel de detalle en los rines y la tapicería fue excepcional. Ya reservé el Ceramic para el siguiente mes.',
-    location: 'Polanco',
+    location: 'Valle Oriente',
   },
   {
     id: 2,
@@ -174,7 +174,7 @@ export const testimonials = [
     service: 'Ceramic Coating',
     rating: 5,
     review: 'El ceramic coating ha sido la mejor inversión. Después de 6 meses, el agua sigue resbalando como el primer día. El equipo de DeluxDetail es muy profesional y puntual.',
-    location: 'Lomas de Chapultepec',
+    location: 'Cumbres',
   },
   {
     id: 3,
@@ -183,7 +183,7 @@ export const testimonials = [
     service: 'Paint Correction',
     rating: 5,
     review: 'Llevé mi Cayenne con swirl marks que dejó el taller de la agencia y lo devolvieron con una pintura de espejo. Usan equipo Rupes profesional. Lo notás desde que llegás al taller.',
-    location: 'Santa Fe',
+    location: 'San Pedro Garza García',
   },
   {
     id: 4,
@@ -192,7 +192,7 @@ export const testimonials = [
     service: 'Interior Deep Clean',
     rating: 5,
     review: 'Tenía manchas en la tapicería de cuero crema que pensé eran permanentes. El interior quedó impecable y el aroma es increíble. Mis hijos y el perro ya no dejan huella gracias al ceramic interior.',
-    location: 'Interlomas',
+    location: 'Contry',
   },
   {
     id: 5,
@@ -201,7 +201,7 @@ export const testimonials = [
     service: 'Rapid Detail',
     rating: 5,
     review: 'Perfecto para entre semana. En menos de una hora mi Tesla estaba reluciente. Lo reservo cada viernes antes del fin de semana. Rapidez sin sacrificar calidad.',
-    location: 'Condesa',
+    location: 'Centro',
   },
   {
     id: 6,
@@ -210,7 +210,7 @@ export const testimonials = [
     service: 'Premium Detail',
     rating: 5,
     review: 'Tercera vez que vengo y siempre el mismo nivel de excelencia. El proceso de reserva por WhatsApp es rapidísimo y siempre me confirman en menos de 10 minutos.',
-    location: 'Bosques de las Lomas',
+    location: 'Punta Sierra',
   },
 ];
 
@@ -221,7 +221,7 @@ export const faqs = [
   },
   {
     question: '¿Puedo esperar mientras detallan mi auto?',
-    answer: 'Sí, contamos con sala de espera con WiFi, café y agua. Para servicios de más de 3 horas, te ofrecemos servicio de shuttle dentro de la zona de Polanco o puedes dejarnos tu auto y te avisamos por WhatsApp cuando esté listo.',
+    answer: 'Sí, contamos con sala de espera con WiFi, café y agua. Para servicios de más de 3 horas, te ofrecemos servicio de shuttle dentro de la zona de Valle Oriente y San Pedro o puedes dejarnos tu auto y te avisamos por WhatsApp cuando esté listo.',
   },
   {
     question: '¿Qué productos utilizan?',
@@ -233,11 +233,11 @@ export const faqs = [
   },
   {
     question: '¿Cómo funciona el proceso de reserva?',
-    answer: 'Reservas por esta página o por WhatsApp. Eliges el servicio, fecha y hora. Te confirmamos en menos de 15 minutos por WhatsApp. El día de tu cita, llegas al taller en Polanco y nos encargamos del resto.',
+    answer: 'Reservas por esta página o por WhatsApp. Eliges el servicio, fecha y hora. Te confirmamos en menos de 15 minutos por WhatsApp. El día de tu cita, llegas al taller en Monterrey y nos encargamos del resto.',
   },
   {
     question: '¿Hacen servicio a domicilio?',
-    answer: 'Sí, para vehículos en la zona de Polanco, Lomas, Santa Fe e Interlomas. El servicio a domicilio tiene un cargo adicional de $299 MXN. Contamos con van equipada con agua y electricidad propia.',
+    answer: 'Sí, para vehículos en la zona de Valle Oriente, Cumbres, San Pedro Garza García y Contry. El servicio a domicilio tiene un cargo adicional de $399 MXN. Contamos con van equipada con agua y electricidad propia.',
   },
   {
     question: '¿Aceptan tarjetas de crédito?',
