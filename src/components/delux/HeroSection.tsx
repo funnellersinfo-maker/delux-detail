@@ -100,7 +100,7 @@ export default function HeroSection({ onBookNow, onViewServices }: HeroSectionPr
           <DopamineReveal direction="scale" delay={1.0}>
             <div className="text-center cursor-default">
               <div className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                <TurboCounter end={500} suffix="+" duration={2000} />
+                <TurboCounter end={500} suffix="+" duration={2000} delay={1200} />
               </div>
               <div className="text-xs tracking-wider uppercase mt-1">Vehículos Detallados</div>
             </div>
@@ -109,7 +109,7 @@ export default function HeroSection({ onBookNow, onViewServices }: HeroSectionPr
           <DopamineReveal direction="scale" delay={1.15}>
             <div className="text-center cursor-default">
               <div className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                <TurboCounter end={4.9} decimals={1} duration={1600} />
+                <TurboCounter end={4.9} decimals={1} duration={1600} delay={1400} />
               </div>
               <div className="text-xs tracking-wider uppercase mt-1">Google Rating</div>
             </div>
@@ -118,7 +118,7 @@ export default function HeroSection({ onBookNow, onViewServices }: HeroSectionPr
           <DopamineReveal direction="scale" delay={1.3}>
             <div className="text-center cursor-default">
               <div className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                <TurboCounter end={3} suffix=" años" duration={1200} />
+                <TurboCounter end={3} suffix=" años" duration={1200} delay={1600} />
               </div>
               <div className="text-xs tracking-wider uppercase mt-1">Garantía Ceramic</div>
             </div>
