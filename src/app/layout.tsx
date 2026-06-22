@@ -28,10 +28,10 @@ export const metadata: Metadata = {
   keywords: ["car detailing Monterrey", "detailing NL", "ceramic coating Mexico", "paint correction Monterrey", "DeluxDetail", "detailing profesional Mexico", "lavado premium San Pedro Garza García"],
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "64x64" },
-      { url: "/favicon.png", sizes: "1024x1024", type: "image/png" },
+      { url: "/favicon-v2.ico", sizes: "64x64" },
+      { url: "/favicon-v2.png", sizes: "1024x1024", type: "image/png" },
     ],
-    apple: "/apple-touch-icon.png",
+    apple: "/apple-touch-icon-v2.png",
   },
   openGraph: {
     title: "DeluxDetail — Detailing Profesional Monterrey NL",
@@ -62,6 +62,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/favicon-v2.png" type="image/png" sizes="1024x1024" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon-v2.png" sizes="180x180" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
