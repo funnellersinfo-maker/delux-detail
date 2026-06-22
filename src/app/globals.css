@@ -117,6 +117,12 @@ html {
   scroll-behavior: smooth;
   touch-action: manipulation;
   -ms-touch-action: manipulation;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* Gold gradient text */
