@@ -10,6 +10,7 @@ import TestimonialsSection from '@/components/delux/TestimonialsSection';
 import FAQSection from '@/components/delux/FAQSection';
 import FounderSection from '@/components/delux/FounderSection';
 import AvailabilitySection from '@/components/delux/AvailabilitySection';
+import VehicleFinder from '@/components/delux/VehicleFinder';
 import BookingSystem from '@/components/delux/BookingSystem';
 import BookingConfirmation from '@/components/delux/BookingConfirmation';
 import AdminPanel from '@/components/delux/AdminPanel';
@@ -56,6 +57,7 @@ export default function Home() {
           <Navbar onBookNow={() => handleBookNow()} />
           <HeroSection onBookNow={() => handleBookNow()} onViewServices={handleViewServices} />
           <ServicesSection onSelectService={handleSelectService} onBookNow={() => handleBookNow()} />
+          <VehicleFinder onBookNow={handleBookNow} />
           <GallerySection />
           <TestimonialsSection />
           <FounderSection />

@@ -67,7 +67,7 @@ export default function AvailabilitySection() {
           </DopamineReveal>
           <DopamineReveal direction="flip" delay={0.15}>
             <p className="text-[#888] text-sm">
-              Los espacios se llenan rápido. Reservá tu lugar ahora.
+              Estamos aceptando nuevas reservas para esta semana.
             </p>
           </DopamineReveal>
         </div>

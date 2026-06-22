@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { CheckCircle2, MessageCircle, ArrowRight } from 'lucide-react';
+import { CheckCircle2, MessageCircle, ArrowRight, Zap } from 'lucide-react';
 import { services } from '@/lib/services';
 import type { BookingData } from './BookingSystem';
 import { format } from 'date-fns';
@@ -15,14 +15,25 @@ interface BookingConfirmationProps {
 export default function BookingConfirmation({ booking, onClose }: BookingConfirmationProps) {
   const service = services.find(s => s.id === booking.serviceId);
   
+  // WhatsApp message structured like a SYSTEM, not a form
   const whatsappMessage = encodeURIComponent(
-    `Hola DeluxDetail. Acabo de reservar:\n\n` +
-    `Servicio: ${service?.name || booking.serviceId}\n` +
-    `Fecha: ${format(new Date(booking.date + 'T12:00:00'), "d 'de' MMMM, yyyy", { locale: es })}\n` +
-    `Hora: ${booking.time}\n` +
-    `Vehículo: ${booking.carBrand} ${booking.carModel} ${booking.carYear}\n` +
-    `Nombre: ${booking.name}\n` +
-    `Teléfono: ${booking.phone}`
+    `🔔 *NUEVA RESERVA — DeluxDetail*\n\n` +
+    `📋 *Sistema de Reservas Online*\n` +
+    `━━━━━━━━━━━━━━━━━━\n\n` +
+    `👤 *Cliente:* ${booking.name}\n` +
+    `📱 *Teléfono:* ${booking.phone}\n\n` +
+    `🚗 *Vehículo:*\n` +
+    `   Marca: ${booking.carBrand}\n` +
+    `   Modelo: ${booking.carModel}\n` +
+    `   Año: ${booking.carYear}\n\n` +
+    `✨ *Servicio:* ${service?.name || booking.serviceId}\n` +
+    `💰 *Precio:* $${service?.price || '—'} ${service?.currency || 'MXN'}\n\n` +
+    `📅 *Fecha:* ${format(new Date(booking.date + 'T12:00:00'), "d 'de' MMMM, yyyy", { locale: es })}\n` +
+    `🕐 *Hora:* ${booking.time}\n\n` +
+    `━━━━━━━━━━━━━━━━━━\n` +
+    `✅ Reserva confirmada automáticamente\n` +
+    `📍 Blvd. Díaz Ordaz 140, San Pedro Garza García\n\n` +
+    `_Enviado desde deluxdetail.mx_`
   );
 
   const whatsappUrl = `https://wa.me/528121567890?text=${whatsappMessage}`;
@@ -49,7 +60,7 @@ export default function BookingConfirmation({ booking, onClose }: BookingConfirm
         </div>
 
         {/* Booking Details Card */}
-        <div className="bg-[#1A1A1A] border border-[#2A2A2A] p-6 sm:p-8 mb-8">
+        <div className="bg-[#1A1A1A] border border-[#2A2A2A] p-6 sm:p-8 mb-6">
           <div className="flex items-center gap-2 mb-6">
             <div className="w-2 h-2 bg-[#C9A227] rounded-full" />
             <span className="text-xs tracking-[0.2em] text-[#C9A227] uppercase font-medium">
@@ -57,29 +68,58 @@ export default function BookingConfirmation({ booking, onClose }: BookingConfirm
             </span>
           </div>
 
-          <div className="space-y-4">
-            <div className="flex justify-between items-center py-3 border-b border-[#2A2A2A]">
+          <div className="space-y-3">
+            <div className="flex justify-between items-center py-2.5 border-b border-[#2A2A2A]">
               <span className="text-[#888] text-sm">Servicio</span>
               <span className="text-white font-semibold">{service?.name}</span>
             </div>
-            <div className="flex justify-between items-center py-3 border-b border-[#2A2A2A]">
+            <div className="flex justify-between items-center py-2.5 border-b border-[#2A2A2A]">
+              <span className="text-[#888] text-sm">Precio</span>
+              <span className="text-[#C9A227] font-bold">${service?.price} {service?.currency}</span>
+            </div>
+            <div className="flex justify-between items-center py-2.5 border-b border-[#2A2A2A]">
               <span className="text-[#888] text-sm">Fecha</span>
               <span className="text-white font-semibold">
                 {format(new Date(booking.date + 'T12:00:00'), "d 'de' MMMM, yyyy", { locale: es })}
               </span>
             </div>
-            <div className="flex justify-between items-center py-3 border-b border-[#2A2A2A]">
+            <div className="flex justify-between items-center py-2.5 border-b border-[#2A2A2A]">
               <span className="text-[#888] text-sm">Hora</span>
               <span className="text-white font-semibold">{booking.time}</span>
             </div>
-            <div className="flex justify-between items-center py-3 border-b border-[#2A2A2A]">
+            <div className="flex justify-between items-center py-2.5 border-b border-[#2A2A2A]">
               <span className="text-[#888] text-sm">Vehículo</span>
               <span className="text-white font-semibold">{booking.carBrand} {booking.carModel} {booking.carYear}</span>
             </div>
-            <div className="flex justify-between items-center py-3">
-              <span className="text-[#888] text-sm">Nombre</span>
+            <div className="flex justify-between items-center py-2.5 border-b border-[#2A2A2A]">
+              <span className="text-[#888] text-sm">Cliente</span>
               <span className="text-white font-semibold">{booking.name}</span>
             </div>
+            <div className="flex justify-between items-center py-2.5">
+              <span className="text-[#888] text-sm">Teléfono</span>
+              <span className="text-white font-semibold">{booking.phone}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* WhatsApp Preview Card — THIS IS THE SYSTEM MOMENT */}
+        <div className="bg-[#141414] border border-[#2A2A2A] p-5 mb-8">
+          <div className="flex items-center gap-2 mb-3">
+            <Zap size={14} className="text-[#25D366]" />
+            <span className="text-xs tracking-[0.15em] text-[#25D366] uppercase font-medium">
+              Mensaje automático generado
+            </span>
+          </div>
+          <p className="text-[#888] text-xs leading-relaxed">
+            Al continuar por WhatsApp, se enviará automáticamente un mensaje con todos los datos de tu reserva. 
+            Nuestro equipo lo recibe al instante y confirma tu cita en minutos.
+          </p>
+          <div className="mt-3 p-3 bg-[#0B0B0B] border border-[#2A2A2A] text-xs text-[#666] font-mono leading-relaxed max-h-28 overflow-y-auto">
+            <span className="text-[#25D366]">🔔</span> NUEVA RESERVA — DeluxDetail<br />
+            👤 {booking.name} · 📱 {booking.phone}<br />
+            🚗 {booking.carBrand} {booking.carModel} {booking.carYear}<br />
+            ✨ {service?.name} · 💰 ${service?.price} {service?.currency}<br />
+            📅 {format(new Date(booking.date + 'T12:00:00'), "d/MM/yyyy")} · 🕐 {booking.time}
           </div>
         </div>
 
