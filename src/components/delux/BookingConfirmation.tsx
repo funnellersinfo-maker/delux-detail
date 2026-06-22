@@ -21,10 +21,11 @@ export default function BookingConfirmation({ booking, onClose }: BookingConfirm
     `Fecha: ${format(new Date(booking.date + 'T12:00:00'), "d 'de' MMMM, yyyy", { locale: es })}\n` +
     `Hora: ${booking.time}\n` +
     `Vehículo: ${booking.carBrand} ${booking.carModel} ${booking.carYear}\n` +
-    `Nombre: ${booking.name}`
+    `Nombre: ${booking.name}\n` +
+    `Teléfono: ${booking.phone}`
   );
 
-  const whatsappUrl = `https://wa.me/15551234567?text=${whatsappMessage}`;
+  const whatsappUrl = `https://wa.me/525514923180?text=${whatsappMessage}`;
 
   return (
     <div className="fixed inset-0 z-50 bg-[#0B0B0B]/98 backdrop-blur-md overflow-y-auto flex items-center justify-center p-4">

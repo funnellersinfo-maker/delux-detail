@@ -16,31 +16,31 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DeluxDetail — Premium Car Detailing | Acabado de Concesionario",
-  description: "Devuélvele a tu vehículo el acabado que merece. Servicios de detailing profesional: Ceramic Coating, Paint Correction, Interior Deep Cleaning y más. Reserva online.",
-  keywords: ["car detailing", "premium detailing", "ceramic coating", "paint correction", "car care", "DeluxDetail"],
+  title: "DeluxDetail — Detailing Profesional Polanco CDMX | Ceramic Coating & Paint Correction",
+  description: "Taller de detailing profesional en Polanco, CDMX. Ceramic Coating IGL, Paint Correction, Interior Deep Clean. 487+ vehículos detallados. Garantía escrita 3 años. Reserva por WhatsApp.",
+  keywords: ["car detailing CDMX", "detailing Polanco", "ceramic coating Mexico", "paint correction CDMX", "DeluxDetail", "detailing profesional Mexico", "lavado premium Polanco"],
   icons: {
     icon: "/logo.svg",
   },
   openGraph: {
-    title: "DeluxDetail — Premium Car Detailing",
-    description: "Devuélvele a tu vehículo el acabado que merece. Servicios de detailing profesional con resultados de concesionario.",
+    title: "DeluxDetail — Detailing Profesional Polanco CDMX",
+    description: "Taller de detailing profesional en Polanco. Ceramic Coating IGL con garantía de 3 años. 487+ vehículos, 127 reseñas 5 estrellas. Reserva ahora.",
     url: "https://delux-detail.pages.dev",
-    siteName: "DeluxDetail",
+    siteName: "DeluxDetail Polanco",
     type: "website",
     images: [
       {
         url: "/images/hero-car.jpg",
         width: 1200,
         height: 630,
-        alt: "DeluxDetail Premium Car Detailing",
+        alt: "DeluxDetail — Taller de detailing profesional en Polanco, CDMX",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DeluxDetail — Premium Car Detailing",
-    description: "Devuélvele a tu vehículo el acabado que merece. Reserva online ahora.",
+    title: "DeluxDetail — Detailing Profesional Polanco CDMX",
+    description: "Taller de detailing profesional en Polanco. Ceramic Coating IGL con garantía de 3 años. Reserva por WhatsApp.",
   },
 };
 

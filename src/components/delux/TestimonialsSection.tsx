@@ -60,7 +60,11 @@ export default function TestimonialsSection() {
                 {/* Author */}
                 <div className="border-t border-[#2A2A2A] pt-4">
                   <div className="font-semibold text-white text-sm">{testimonial.name}</div>
-                  <div className="text-[#888] text-xs mt-0.5">{testimonial.vehicle}</div>
+                  <div className="flex items-center gap-2 mt-0.5">
+                    <span className="text-[#888] text-xs">{testimonial.vehicle}</span>
+                    <span className="text-[#333]">·</span>
+                    <span className="text-[#555] text-xs">{testimonial.location}</span>
+                  </div>
                   <div className="text-[#C9A227] text-xs mt-1">{testimonial.service}</div>
                 </div>
 

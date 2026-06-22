@@ -41,7 +41,7 @@ function ServiceCard({
           {/* Price badge with counter */}
           <div className="absolute top-4 right-4 bg-[#0B0B0B]/80 backdrop-blur-sm border border-[#C9A227]/30 px-3 py-1.5">
             <span className="text-[#C9A227] text-sm font-bold">
-              Desde <TurboCounter end={service.priceFrom} prefix="$" duration={1500 + index * 200} />
+              $<TurboCounter end={service.price} duration={1500 + index * 200} /> {service.currency}
             </span>
           </div>
         </div>

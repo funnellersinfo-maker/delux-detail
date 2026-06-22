@@ -39,7 +39,7 @@ export default function HeroSection({ onBookNow, onViewServices }: HeroSectionPr
         >
           <div className="w-1.5 h-1.5 rounded-full bg-[#C9A227] animate-pulse" />
           <span className="text-xs sm:text-sm tracking-[0.2em] text-[#C9A227] uppercase font-medium">
-            Premium Car Detailing
+            Polanco, CDMX
           </span>
         </motion.div>
 
@@ -68,8 +68,7 @@ export default function HeroSection({ onBookNow, onViewServices }: HeroSectionPr
           transition={{ duration: 0.8, delay: 0.5 }}
           className="text-base sm:text-lg md:text-xl text-[#888] max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          Transformamos tu auto en una experiencia premium. Cada detalle, cada superficie, 
-          cada rincón tratado con obsesión por la perfección.
+          Detallado profesional en Polanco. Resultados de concesionario con productos importados y garantía escrita.
         </motion.p>
 
         {/* CTAs */}
@@ -95,12 +94,12 @@ export default function HeroSection({ onBookNow, onViewServices }: HeroSectionPr
           </DopamineReveal>
         </div>
 
-        {/* Trust Indicators — with TURBO counter animation */}
+        {/* Trust Indicators — specific real numbers */}
         <div className="mt-14 sm:mt-20 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-[#555]">
           <DopamineReveal direction="scale" delay={1.0}>
             <div className="text-center cursor-default">
               <div className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                <TurboCounter end={500} suffix="+" duration={2000} delay={1200} />
+                <TurboCounter end={487} suffix="+" duration={2200} delay={1200} />
               </div>
               <div className="text-xs tracking-wider uppercase mt-1">Vehículos Detallados</div>
             </div>
@@ -111,7 +110,7 @@ export default function HeroSection({ onBookNow, onViewServices }: HeroSectionPr
               <div className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                 <TurboCounter end={4.9} decimals={1} duration={1600} delay={1400} />
               </div>
-              <div className="text-xs tracking-wider uppercase mt-1">Google Rating</div>
+              <div className="text-xs tracking-wider uppercase mt-1">127 reseñas Google</div>
             </div>
           </DopamineReveal>
           <div className="w-[1px] h-10 bg-[#2A2A2A] hidden sm:block" />

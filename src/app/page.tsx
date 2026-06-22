@@ -7,10 +7,12 @@ import ServicesSection from '@/components/delux/ServicesSection';
 import ServiceDetail from '@/components/delux/ServiceDetail';
 import GallerySection from '@/components/delux/GallerySection';
 import TestimonialsSection from '@/components/delux/TestimonialsSection';
+import FAQSection from '@/components/delux/FAQSection';
 import BookingSystem from '@/components/delux/BookingSystem';
 import BookingConfirmation from '@/components/delux/BookingConfirmation';
 import AdminPanel from '@/components/delux/AdminPanel';
 import Footer from '@/components/delux/Footer';
+import WhatsAppFloat from '@/components/delux/WhatsAppFloat';
 import type { BookingData } from '@/components/delux/BookingSystem';
 
 type View = 'main' | 'service-detail' | 'booking' | 'confirmation' | 'admin';
@@ -54,7 +56,9 @@ export default function Home() {
           <ServicesSection onSelectService={handleSelectService} onBookNow={() => handleBookNow()} />
           <GallerySection />
           <TestimonialsSection />
+          <FAQSection />
           <Footer onBookNow={() => handleBookNow()} onOpenAdmin={() => setView('admin')} />
+          <WhatsAppFloat />
         </>
       )}
 

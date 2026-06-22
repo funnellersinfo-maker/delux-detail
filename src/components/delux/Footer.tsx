@@ -23,7 +23,7 @@ export default function Footer({ onBookNow, onOpenAdmin }: FooterProps) {
           </DopamineReveal>
           <DopamineReveal direction="bottom" delay={0.1}>
             <p className="text-[#888] mb-8 max-w-md mx-auto">
-              Reserva ahora y experimenta la diferencia de un detailing profesional premium.
+              Reserva tu cita hoy. Resultados de concesionario con garantía escrita.
             </p>
           </DopamineReveal>
           <DopamineReveal direction="flip" delay={0.2}>
@@ -40,7 +40,7 @@ export default function Footer({ onBookNow, onOpenAdmin }: FooterProps) {
           <div className="mt-10 flex items-center justify-center gap-8 text-[#555]">
             <div className="text-center">
               <div className="text-xl font-bold text-white">
-                <TurboCounter end={500} suffix="+" duration={2000} />
+                <TurboCounter end={487} suffix="+" duration={2000} />
               </div>
               <div className="text-xs tracking-wider uppercase mt-0.5">Vehículos</div>
             </div>
@@ -67,8 +67,11 @@ export default function Footer({ onBookNow, onOpenAdmin }: FooterProps) {
                 <span className="text-xl font-bold tracking-wider text-white">DELUX</span>
                 <span className="text-xl font-bold tracking-wider text-[#C9A227]">DETAIL</span>
               </div>
-              <p className="text-[#888] text-sm leading-relaxed">
-                Premium car detailing profesional. Cada vehículo tratado con obsesión por la perfección.
+              <p className="text-[#888] text-sm leading-relaxed mb-3">
+                Taller de detallado profesional en Polanco, CDMX. Productos importados, equipo certificado y garantía escrita.
+              </p>
+              <p className="text-[#555] text-xs">
+                Fundado en 2021 por Alejandro Vega, detailer certificado IGL Coatings.
               </p>
             </div>
           </DopamineReveal>
@@ -80,11 +83,11 @@ export default function Footer({ onBookNow, onOpenAdmin }: FooterProps) {
                 Servicios
               </h4>
               <ul className="space-y-2 text-sm text-[#888]" role="list">
-                <li>Rapid Detail</li>
-                <li>Premium Detail</li>
-                <li>Interior Deep Cleaning</li>
-                <li>Paint Correction</li>
-                <li>Ceramic Coating</li>
+                <li>Rapid Detail — $899 MXN</li>
+                <li>Premium Detail — $2,499 MXN</li>
+                <li>Interior Deep Clean — $1,899 MXN</li>
+                <li>Paint Correction — $3,999 MXN</li>
+                <li>Ceramic Coating — $7,999 MXN</li>
               </ul>
             </div>
           </DopamineReveal>
@@ -96,28 +99,28 @@ export default function Footer({ onBookNow, onOpenAdmin }: FooterProps) {
                 Contacto
               </h4>
               <ul className="space-y-3 text-sm text-[#888]" role="list">
+                <li className="flex items-start gap-2">
+                  <MapPin size={14} className="text-[#C9A227] mt-0.5 shrink-0" aria-hidden="true" />
+                  <span>Av. Presidente Masaryk 460, Polanco V sección, Miguel Hidalgo, 11560 CDMX</span>
+                </li>
                 <li className="flex items-center gap-2">
                   <Phone size={14} className="text-[#C9A227]" aria-hidden="true" />
-                  <a href="tel:+15551234567" className="hover:text-[#C9A227] transition-colors">+1 (555) 123-4567</a>
+                  <a href="tel:+525514923180" className="hover:text-[#C9A227] transition-colors">55 1492 3180</a>
                 </li>
                 <li className="flex items-center gap-2">
                   <MessageCircle size={14} className="text-[#C9A227]" aria-hidden="true" />
                   <a
-                    href="https://wa.me/15551234567?text=Hola%20DeluxDetail%2C%20me%20interesa%20sus%20servicios%20de%20detailing"
+                    href="https://wa.me/525514923180?text=Hola%20DeluxDetail%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita%20para%20detailing"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-[#C9A227] transition-colors"
                   >
-                    WhatsApp
+                    WhatsApp 55 1492 3180
                   </a>
                 </li>
                 <li className="flex items-center gap-2">
-                  <MapPin size={14} className="text-[#C9A227]" aria-hidden="true" />
-                  <span>Ciudad de México</span>
-                </li>
-                <li className="flex items-center gap-2">
                   <Clock size={14} className="text-[#C9A227]" aria-hidden="true" />
-                  <span>Lun-Sáb: 8:00 - 18:00</span>
+                  <span>Lun a Vie: 8:00–18:00 / Sáb: 9:00–15:00</span>
                 </li>
               </ul>
             </div>
@@ -133,12 +136,12 @@ export default function Footer({ onBookNow, onOpenAdmin }: FooterProps) {
                 <li className="flex items-center gap-2">
                   <Instagram size={14} className="text-[#C9A227]" aria-hidden="true" />
                   <a
-                    href="https://instagram.com/deluxdetail"
+                    href="https://instagram.com/deluxdetail.mx"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-[#C9A227] transition-colors"
                   >
-                    @deluxdetail
+                    @deluxdetail.mx
                   </a>
                 </li>
               </ul>
@@ -146,10 +149,10 @@ export default function Footer({ onBookNow, onOpenAdmin }: FooterProps) {
                 <span className="text-xs text-[#555]">Email</span>
                 <div className="mt-1">
                   <a
-                    href="mailto:info@deluxdetail.com"
+                    href="mailto:hola@deluxdetail.mx"
                     className="text-sm text-[#888] hover:text-[#C9A227] transition-colors break-all"
                   >
-                    info@deluxdetail.com
+                    hola@deluxdetail.mx
                   </a>
                 </div>
               </div>
@@ -160,7 +163,7 @@ export default function Footer({ onBookNow, onOpenAdmin }: FooterProps) {
         {/* Bottom */}
         <div className="border-t border-[#2A2A2A] mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-[#555] text-xs">
-            © {new Date().getFullYear()} DeluxDetail. Todos los derechos reservados.
+            © 2024 DeluxDetail. Todos los derechos reservados.
           </p>
           <button
             onClick={onOpenAdmin}

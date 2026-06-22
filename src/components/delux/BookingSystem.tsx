@@ -246,7 +246,7 @@ export default function BookingSystem({ isOpen, onClose, initialServiceId, onCom
                       <div className="flex items-center justify-between gap-2">
                         <h3 className="font-bold text-white text-sm sm:text-base">{service.name}</h3>
                         <span className="text-[#C9A227] font-semibold text-sm whitespace-nowrap">
-                          Desde ${service.priceFrom}
+                          ${service.price} {service.currency}
                         </span>
                       </div>
                       <p className="text-[#888] text-xs sm:text-sm mt-1 line-clamp-1">{service.shortDescription}</p>
@@ -444,7 +444,7 @@ export default function BookingSystem({ isOpen, onClose, initialServiceId, onCom
                     <div className="flex justify-between">
                       <span className="text-[#888]">Desde</span>
                       <span className="text-[#C9A227] font-bold">
-                        ${services.find(s => s.id === selectedService)?.priceFrom}
+                        ${services.find(s => s.id === selectedService)?.price} {services.find(s => s.id === selectedService)?.currency}
                       </span>
                     </div>
                   </div>

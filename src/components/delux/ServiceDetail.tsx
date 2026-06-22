@@ -62,9 +62,9 @@ export default function ServiceDetail({ serviceId, onClose, onBookNow }: Service
           <DopamineReveal direction="scale" delay={0.1}>
             <div className="flex flex-wrap items-center gap-6 sm:gap-10 mb-10 p-5 sm:p-6 bg-[#1A1A1A] border border-[#2A2A2A]">
               <div>
-                <span className="text-xs text-[#888] uppercase tracking-wider">Precio desde</span>
+                <span className="text-xs text-[#888] uppercase tracking-wider">Precio</span>
                 <div className="text-2xl font-bold text-[#C9A227] mt-1">
-                  <TurboCounter end={service.priceFrom} prefix="$" duration={1600} />
+                  $<TurboCounter end={service.price} duration={1600} /> {service.currency}
                 </div>
               </div>
               <div className="w-[1px] h-10 bg-[#2A2A2A] hidden sm:block" />
