@@ -112,9 +112,11 @@
   background: #C9A227;
 }
 
-/* Smooth scroll */
+/* Smooth scroll + disable mobile zoom */
 html {
   scroll-behavior: smooth;
+  touch-action: manipulation;
+  -ms-touch-action: manipulation;
 }
 
 /* Gold gradient text */
