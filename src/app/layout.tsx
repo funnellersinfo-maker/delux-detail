@@ -27,7 +27,11 @@ export const metadata: Metadata = {
   description: "Taller de detailing profesional en Monterrey, NL. Ceramic Coating IGL, Paint Correction, Interior Deep Clean. 487+ vehículos detallados. Garantía escrita 3 años. Reserva por WhatsApp.",
   keywords: ["car detailing Monterrey", "detailing NL", "ceramic coating Mexico", "paint correction Monterrey", "DeluxDetail", "detailing profesional Mexico", "lavado premium San Pedro Garza García"],
   icons: {
-    icon: "/logo.svg",
+    icon: [
+      { url: "/favicon.ico", sizes: "64x64" },
+      { url: "/favicon.png", sizes: "1024x1024", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
   },
   openGraph: {
     title: "DeluxDetail — Detailing Profesional Monterrey NL",
