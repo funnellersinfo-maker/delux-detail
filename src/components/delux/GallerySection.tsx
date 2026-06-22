@@ -1,7 +1,8 @@
 'use client';
 
 import BeforeAfterSlider from './BeforeAfterSlider';
-import { motion } from 'framer-motion';
+import DopamineReveal, { getDisruptiveDirections } from './DopamineReveal';
+import { useMemo } from 'react';
 
 const galleryItems = [
   {
@@ -27,56 +28,53 @@ const galleryItems = [
   },
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, delay: i * 0.15 },
-  }),
-};
-
 export default function GallerySection() {
+  const directions = useMemo(() => getDisruptiveDirections(galleryItems.length), []);
+
   return (
     <section id="galeria" className="py-20 sm:py-28 bg-[#0B0B0B]" aria-label="Galería de resultados antes y después">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <span className="text-xs tracking-[0.25em] text-[#C9A227] uppercase font-medium">
-            Resultados Reales
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
-            La diferencia se ve
-          </h2>
+          <DopamineReveal direction="scale" delay={0}>
+            <span className="text-xs tracking-[0.25em] text-[#C9A227] uppercase font-medium">
+              Resultados Reales
+            </span>
+          </DopamineReveal>
+          <DopamineReveal direction="bottom" delay={0.1}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
+              La diferencia se ve
+            </h2>
+          </DopamineReveal>
           <div className="line-gold w-20 mx-auto mb-6" />
-          <p className="text-[#888] max-w-xl mx-auto text-base sm:text-lg">
-            Desliza para ver la transformación. Resultados reales, sin filtros.
-          </p>
+          <DopamineReveal direction="flip" delay={0.15}>
+            <p className="text-[#888] max-w-xl mx-auto text-base sm:text-lg">
+              Desliza para ver la transformación. Resultados reales, sin filtros.
+            </p>
+          </DopamineReveal>
         </div>
 
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {galleryItems.map((item, i) => (
-            <motion.div
+            <DopamineReveal
               key={item.id}
-              custom={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-50px' }}
-              variants={cardVariants}
-              className="group"
+              direction={directions[i] as 'left' | 'right' | 'bottom' | 'scale' | 'flip'}
+              delay={i * 0.12}
             >
-              <div className="border border-[#2A2A2A] overflow-hidden group-hover:border-[#C9A227]/30 transition-colors">
-                <BeforeAfterSlider
-                  beforeSrc={item.before}
-                  afterSrc={item.after}
-                />
+              <div className="group">
+                <div className="border border-[#2A2A2A] overflow-hidden group-hover:border-[#C9A227]/30 transition-all duration-500 group-hover:shadow-[0_0_40px_rgba(201,162,39,0.1)]">
+                  <BeforeAfterSlider
+                    beforeSrc={item.before}
+                    afterSrc={item.after}
+                  />
+                </div>
+                <div className="mt-3 px-1">
+                  <h3 className="text-white font-semibold">{item.title}</h3>
+                  <p className="text-[#888] text-sm">{item.vehicle}</p>
+                </div>
               </div>
-              <div className="mt-3 px-1">
-                <h3 className="text-white font-semibold">{item.title}</h3>
-                <p className="text-[#888] text-sm">{item.vehicle}</p>
-              </div>
-            </motion.div>
+            </DopamineReveal>
           ))}
         </div>
       </div>
